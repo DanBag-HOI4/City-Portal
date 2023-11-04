@@ -1,4 +1,8 @@
+<?php
 
+session_start();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/baginproject/css/styles.css">
+    <link rel="stylesheet" href="../baginproject/css/styles.css">
     <title>Городской портал</title>
 </head>
 <body>
@@ -22,11 +26,21 @@
 
                 <div class="menu">
                     <a href="">Главная</a>
-                    <a href="">Создать заявку</a>
                     <a href="">FAQ</a>
                 </div>
-                
-                <a href="/baginproject/vendor/auth.php">Войти</a>
+
+                <div class="right_menu">
+                    <?php
+
+                    if(!isset($_SESSION["user"])) {
+                        echo '<a href="../baginproject/vendor/signin.php">Войти</a>';
+                        echo '<a href="../baginproject/vendor/signup.php">Зарегистрироваться</a>';
+                    } else {
+                        echo '<a href="../baginproject/vendor/cabinet.php">Личный кабинет</a>';
+                    }
+                    ?>
+
+                </div>
 
             </div>
 

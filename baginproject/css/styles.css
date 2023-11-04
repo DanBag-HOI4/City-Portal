@@ -1,5 +1,5 @@
 * {
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     font-family: montserrat, sans-serif;
 }
@@ -24,16 +24,14 @@ header {
     align-items: center;
 }
 
-.menu a {
+.right_menu {
     display: flex;
-    padding-left: 30px;
-    padding-right: 30px;
-    height: 100px;
-    transition: .3s;
 }
 
-.menu a:hover {
-    background-color: rgb(13, 170, 170);
+.menu a {
+    display: flex;
+    height: 100px;
+    transition: .3s;
 }
 
 header a {
