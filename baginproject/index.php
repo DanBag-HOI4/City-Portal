@@ -35,9 +35,14 @@ session_start();
                     if(!isset($_SESSION["user"])) {
                         echo '<a href="../baginproject/vendor/signin.php">Войти</a>';
                         echo '<a href="../baginproject/vendor/signup.php">Зарегистрироваться</a>';
-                    } else {
-                        echo '<a href="../baginproject/vendor/cabinet.php">Личный кабинет</a>';
+                    } if(isset($_SESSION["user"])) {
+                        if($_SESSION["user"]["role"] == "0") {
+                            echo '<a href="../baginproject/vendor/cabinet.php">Личный кабинет</a>';
+                        } else {
+                            echo '<a href="../baginproject/vendor/admin.php">Личный кабинет</a>';
+                        }
                     }
+
                     ?>
 
                 </div>

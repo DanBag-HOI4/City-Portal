@@ -13,9 +13,9 @@
 <body>
     <form action="../vendor/entry.php" method="post">
         <label for="login">Введите ваш логин</label>
-        <input type="login" name="login" id="login" placeholder="ivan.ivanov@inbox.com">
+        <input type="login" name="login" id="login" placeholder="ivan.ivanov@inbox.com" required>
         <label for="password">Введите ваш пароль</label>
-        <input type="password" name="password" id="password" placeholder="********">
+        <input type="password" name="password" id="password" placeholder="********" required>
         <button type="submit">Отправить данные</button>
     </form>
 </body>

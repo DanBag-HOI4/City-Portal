@@ -21,7 +21,7 @@ session_start();
             </div>
 
             <div class="menu">
-                <a href="">Главная</a>
+                <a href="../index.php">Главная</a>
                 <a href="">FAQ</a>
             </div>
 
@@ -29,34 +29,38 @@ session_start();
 
     </header>
 
+    <hr>
+
     <main>
+
+    <div class="apps">
+
+        <p>Редактор заявок</p>
+        <a href="./my_apps.php">Мои заявки</a>
+        <a class="logout" href="./logout.php">Выйти</a>
+
+    </div>
 
         <div class="main_container">
 
-            <div class="apps">
-                <h2>Заявки</h2>
-                <p>Редактор заявок</p>
-                <p>Мои новые заявки</p>
-                <p>Мои решённые заявки</p>
-                <p>Мои отклонённые заявки</p>
-                <a class="logout" href="./logout.php">выйти</a>
-            </div>
-
             <div class="application">
+
                 <form action="./application_create.php" method="post" enctype="multipart/form-data">
                     <label for="app_name">Название проблемы</label>
-                    <input type="app_name" name="app_name" id="app_name" placeholder="">
+                    <input type="app_name" name="app_name" id="app_name" placeholder="" required>
                     <label for="app_desc">Описание проблемы</label>
-                    <input type="textarea" name="app_desc" id="app_desc" placeholder="">
+                    <textarea type="textarea" name="app_desc" id="app_desc" placeholder="" rows="5" cols="33" maxlength="300" required></textarea>
                     <label for="app_cat">Выберите категорию проблемы</label>
-                    <select name="app_cat" id="app_cat"> 
+                    <select name="app_cat" id="app_cat" required> 
                         <option value="ремонт дорог">ремонт дорог</option> 
                         <option value="уборка мусора">уборка мусора</option> 
                         <option value="другое">другое</option> 
                     </select>
-                    <input type="file" name="app_photo">
+                    <label for="app_photo">Фотография проблемы</label>
+                    <input type="file" name="app_photo" id="app_photo" required>
                     <button type="submit">Отправить данные</button>
                 </form>
+
             </div>
 
         </div>
