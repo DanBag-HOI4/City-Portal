@@ -15,6 +15,7 @@ $app = mysqli_fetch_assoc($app);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/admin_update_apps.css">
     <title>Document</title>
 </head>
@@ -28,13 +29,20 @@ $app = mysqli_fetch_assoc($app);
 
     <form action="./admin_update_apps_create.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value ="<?= $id ?>">
-        <label for="">Укажите статус заявки (Напишите '1' если заявка решена. Напишите '2' если заявка отклонена)</label>
-        <input type="text" name="status" placeholder="Напишите '1' если заявка решена. Напишите '2' если заявка отклонена" value="<?=$app["status"]?>" required>
+        <label for="status">Укажите статус заявки</label>
+        <select name="status" id="status" required> 
+            <option value="новая">новая</option> 
+            <option class="solved" value="решена">решена</option> 
+            <option value="отклонена">отклонена</option> 
+        </select>
+        <?php
+        ?>
         <label for="app_photo2">Фотография решённой проблемы</label>
-        <input type="file" name="app_photo2" id="app_photo2" required>
+        <input class="photo2" type="file" name="app_photo2" id="app_photo2">
         <button type="submit">Отправить данные</button>
     </form>
 
 </div>
+<script src="../js/script.js"></script>
 </body>
 </html>

@@ -44,3 +44,7 @@ button {
     height: 30px;
     cursor: pointer;
 }
+
+.photo2 {
+    visibility: hidden;
+}

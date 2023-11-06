@@ -167,3 +167,12 @@ button {
 .logout {
     color: white;
 }
+
+.photo1 {
+    position: relative;
+}
+
+.photo2 {
+    position: absolute;
+    top: 550px;
+}

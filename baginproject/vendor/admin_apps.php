@@ -3,8 +3,29 @@
 session_start();
 require_once "./connect.php";
 
-$troubles = mysqli_query($connect, "SELECT * FROM `troubles`");
-$troubles = mysqli_fetch_all($troubles);
+if(isset($_POST["sort_id"])) {
+    $id = strip_tags($_POST["sort_id"]);
+    $troubles = get_troubles($connect, $id);
+    foreach($troubles as $item) {
+        $item[5] = "../" . $item[5];
+        $item[8] = "../" . $item[8];
+        printf('
+        <div class="app_card">
+            <p>Проблема: %s</p>
+            <p>Описание проблемы: %s</p>
+            <p>Категория проблемы: %s</p>
+            <p>Дата отправки заявки: %s</p>
+            <img src="%s" alt="">
+            <p>Статус заявки: %s</p>
+            <a href="./solved.php?id=%s">Фото решённой проблемы</a>
+            <a href="./admin_update_apps.php?id=%s">Изменить статус заявки</a>
+        </div>
+        ', $item[2], $item[3], $item[4], $item[7], $item[5], $item[6], $item[0], $item[0]);
+    }
+    exit();
+} else {
+    $troubles = get_troubles($connect);
+}
 
 ?>
 
@@ -13,6 +34,7 @@ $troubles = mysqli_fetch_all($troubles);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/admin_apps.css">
     <title>Document</title>
 </head>
@@ -49,30 +71,27 @@ $troubles = mysqli_fetch_all($troubles);
 
         <div class="main_container">
 
+            <div class="sort">
+                <p>Сортировать:</p>
+                <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
+            </div>
+
             <div class="application">
 
                 <?php
                 foreach($troubles as $item) {
+                    $item[5] = "../" . $item[5];
+                    $item[8] = "../" . $item[8];
                 ?>
                 
-                    <div class="<?="app_card"?>">
-                        <p>Заявки пользователя: <?=$item[1]?></p>
+                    <div class="app_card">
                         <p>Проблема: <?=$item[2]?></p>
                         <p>Описание проблемы: <?=$item[3]?></p>
                         <p>Категория проблемы: <?=$item[4]?></p>
-                        <img src="<?="../" . $item[5]?>" alt="">
-                        <p>Статус заявки: <?
-
-                            if($item[6] == 0) {
-                                echo "новая";
-                            }
-                            if($item[6] == 1) {
-                                echo "решена";
-                            }
-                            if($item[6] == 2) {
-                                echo "отклонена";
-                            }?>
-                        </p>
+                        <p>Дата отправки заявки: <?=$item[7]?></p>
+                        <img class="photo1" src="<?=$item[5]?>" alt="">
+                        <p>Статус заявки: <?=$item[6]?></p>
+                        <a href="./solved.php?id=<?=$item[0]?>">Фото решённой проблемы</a>
                         <a href="./admin_update_apps.php?id=<?=$item[0]?>">Изменить статус заявки</a>
                     </div>
 
@@ -89,6 +108,8 @@ $troubles = mysqli_fetch_all($troubles);
     <footer>
 
     </footer>
+
+    <script src="../js/script.js"></script>
 
 </body>
 </html>
