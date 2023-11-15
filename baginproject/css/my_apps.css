@@ -100,7 +100,7 @@ a {
 }
 
 .app_card {
-    margin-top: 100px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -175,4 +175,10 @@ button {
 .photo2 {
     position: absolute;
     top: 550px;
+}
+
+.search_and_sort {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
 }
