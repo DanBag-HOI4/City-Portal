@@ -70,9 +70,17 @@ if(isset($_POST["sort_id"])) {
 
         <div class="main_container">
 
-            <div class="sort">
-                <p>Сортировать:</p>
-                <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
+            <div class="search_and_sort">
+
+                <div class="sort">
+                    <p>Сортировать:</p>
+                    <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
+                </div>
+                
+                <div class="search">
+                    <input type="search" name="" id="" placeholder="Поиск">
+                </div>
+
             </div>
 
             <div class="application">
@@ -91,6 +99,7 @@ if(isset($_POST["sort_id"])) {
                         <img class="photo1" src="<?=$item[5]?>" alt="">
                         <p>Статус заявки: <?=$item[6]?></p>
                         <a href="./solved.php?id=<?=$item[0]?>">Фото решённой проблемы</a>
+                        <a href="./update_apps.php?id=<?=$item[0]?>">Редактировать заявку</a>
                     </div>
 
                 <?php

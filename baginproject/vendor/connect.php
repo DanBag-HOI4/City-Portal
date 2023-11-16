@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "Portal-City");
+$connect = mysqli_connect("localhost", "root", "", "city-portal");
 if(!$connect) {
     die("error");
 }

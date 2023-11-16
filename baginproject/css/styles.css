@@ -99,3 +99,10 @@ a {
     display: flex;
     flex-direction: column;
 }
+
+@media screen and (max-width: 720px) {
+    .application {
+        display: flex;
+        flex-direction: column;
+    }
+}

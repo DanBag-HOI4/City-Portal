@@ -71,9 +71,17 @@ if(isset($_POST["sort_id"])) {
 
         <div class="main_container">
 
-            <div class="sort">
-                <p>Сортировать:</p>
-                <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
+            <div class="search_and_sort">
+
+                <div class="sort">
+                    <p>Сортировать:</p>
+                    <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
+                </div>
+                
+                <div class="search">
+                    <input type="search" name="" id="" placeholder="Поиск">
+                </div>
+
             </div>
 
             <div class="application">
