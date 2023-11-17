@@ -1,5 +1,6 @@
 <?
 session_start();
+$app_add = $_POST["add_cat"];
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ session_start();
                     <select name="app_cat" id="app_cat" required> 
                         <option value="ремонт дорог">ремонт дорог</option> 
                         <option value="уборка мусора">уборка мусора</option> 
-                        <option value="другое">другое</option> 
+                        <option value="другое">другое</option>               
                     </select>
                     <label for="app_photo">Фотография проблемы</label>
                     <input type="file" name="app_photo" id="app_photo" required>

@@ -4,17 +4,19 @@ session_start();
 require_once "./connect.php";
 
 $id = $_POST["id"];
-
-if($_FILES) {
-    $app_photo = "img/uploads/" . time() . $_FILES["app_photo"]["name"];
-    move_uploaded_file($_FILES["app_photo"]["tmp_name"], "../" . $app_photo2);
-}
-
+$name = $_POST["app_name"];
 $t = time();
 $t2 = date("Y-m-d-H:i:s", $t);
+$app_desc = $_POST["app_desc"];
+$app_cat = $_POST["app_cat"];
 
-mysqli_query($connect, "UPDATE `troubles` SET `date` = '$t2' WHERE `troubles`.`id` = '$id'");
-mysqli_query($connect, "UPDATE `troubles` SET `status` = '$app_status' WHERE `troubles`.`id` = '$id'");
+if($_FILES["app_photo"]["tmp_name"][0]) {
+    $app_photo = "img/uploads/" . time() . $_FILES["app_photo"]["name"];
+    move_uploaded_file($_FILES["app_photo"]["tmp_name"], "../" . $app_photo);
+    mysqli_query($connect, "UPDATE `troubles` SET `name` = '$name', `date` = '$t2', `description` = '$app_desc', `photo` = '$app_photo', `category` = '$app_cat'  WHERE `troubles`.`id` = '$id'");
+} else {
+    mysqli_query($connect, "UPDATE `troubles` SET `name` = '$name', `date` = '$t2', `description` = '$app_desc'  WHERE `troubles`.`id` = '$id'");
+}
 
 ?>
 

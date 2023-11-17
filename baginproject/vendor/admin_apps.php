@@ -82,6 +82,12 @@ if(isset($_POST["sort_id"])) {
                     <input type="search" name="" id="" placeholder="Поиск">
                 </div>
 
+                <form class="add_cat" method="post" action="./cabinet.php">
+                    <label for="add_cat">Добвление категории</label>
+                    <input type="text" name="add_cat" id="add_cat">
+                    <button type="submit">Добавить категорию</button>
+                </form>
+
             </div>
 
             <div class="application">

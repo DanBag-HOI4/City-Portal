@@ -33,6 +33,12 @@ $app = mysqli_fetch_assoc($app);
         <input type="text" name="app_name" id="app_name" value="<?=$app["name"]?>">
         <label for="app_desc">Описание проблемы</label>
         <textarea maxlength="500" name="app_desc" id="app_desc"><?=$app["description"]?></textarea>
+        <label for="app_cat">Выберите категорию проблемы</label>
+            <select name="app_cat" id="app_cat"> 
+                <option value="ремонт дорог">ремонт дорог</option> 
+                <option value="уборка мусора">уборка мусора</option> 
+                <option value="другое">другое</option> 
+            </select>
         <label for="app_photo">Фотография проблемы</label>
         <input class="photo" type="file" name="app_photo" id="app_photo">
         <button type="submit">Отправить данные</button>
