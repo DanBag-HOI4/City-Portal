@@ -4,8 +4,31 @@ if(!$connect) {
     die("error");
 }
 
-function get_troubles($connect, $id = FALSE) {
-    $sql = "SELECT * FROM `troubles`";
+function get_troubles($connect, $id = FALSE, $sortdiv = FALSE) {
+    if(isset($_SESSION["user"])) {
+        if($_SESSION["user"]["role"] == 0) {
+            $user_id = $_SESSION["user"]["id"];
+            $sql = "SELECT * FROM `troubles` WHERE `user_id` = '$user_id'";
+        }
+        else {
+            $sql = "SELECT * FROM `troubles`";
+        }
+    } else {
+        $sql = "SELECT * FROM `troubles`";
+    }
+
+    if($sortdiv) {
+        if($sortdiv == "new") {
+            $sql .=" WHERE `status` = 'новая'";
+        }
+        else if($sortdiv == "solved") {
+            $sql .=" WHERE `status` = 'решена'";
+        }
+        else if($sortdiv == "rejected") {
+            $sql .=" WHERE `status` = 'отклонена'";
+        }
+    }
+    
     if($id) {
         if($id == "date-old") {
             $sql .=" ORDER BY `date` ASC";
@@ -19,6 +42,8 @@ function get_troubles($connect, $id = FALSE) {
         $troubles[] = mysqli_fetch_array($result);
     }
 
-    return $troubles;
+    if(isset($troubles)) {
+        return $troubles;
+    }
 }
 ?>

@@ -13,8 +13,8 @@ $(document).ready(function () {
         var id = $(this).attr("id");
         $.ajax({
             url:"my_apps.php",
-            data: "sort_id="+id,
-            type: "post",
+            data:"sort_id="+id,
+            type:"post",
             success:function (html) {
                 $(".application").html(html);
             }
@@ -22,7 +22,7 @@ $(document).ready(function () {
         return false
     });
 
-    $(".sort a").click(function () {
+    $(".sort2 a").click(function () {
         var id = $(this).attr("id");
         $.ajax({
             url:"admin_apps.php",
@@ -35,7 +35,17 @@ $(document).ready(function () {
         return false
     });
 
-    $(".app_card").click(function () {
-        var pic = $(".photo2").css("visibility", "hidden")
+    $(".filter_block a").click(function () {
+        var sortdiv = $(this).attr("id");
+        $.ajax({
+            url:"my_apps.php",
+            data:"filter_id="+sortdiv,
+            type:"post",
+            success:function (html) {
+                $(".application").html(html);
+            }
+        });
+        return false;
     });
+
 });
