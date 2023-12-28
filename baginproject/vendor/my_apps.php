@@ -3,32 +3,85 @@
 session_start();
 require_once "./connect.php";
 
-if(isset($_POST["sort_id"])) {
+if (isset($_POST["sort_id"])) {
     $id = strip_tags($_POST["sort_id"]);
     $troubles = get_troubles($connect, $id);
-    foreach($troubles as $item) {
-        $item[5] = "../" . $item[5];
-        $item[8] = "../" . $item[8];
-        printf('
+    foreach ($troubles as $item) {
+
+?>
+
         <div class="app_card">
-            <p>Проблема: %s</p>
-            <p>Описание проблемы: %s</p>
-            <p>Категория проблемы: %s</p>
-            <p>Дата отправки заявки: %s</p>
-            <img src="%s" alt="">
-            <p>Статус заявки: %s</p>
-            <a href="./solved.php?id=%s">Фото решённой проблемы</a>
+            <p>Заявка #<?= $item[0] ?></p>
+            <p>Проблема: <?= $item[2] ?></p>
+            <p>Описание проблемы: <?= $item[3] ?></p>
+            <p>Категория проблемы: <?= $item[4] ?></p>
+            <p>Дата отправки заявки: <?= $item[7] ?></p>
+            <div class="img_wrapper">
+                <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
+                <? if ($item[8] !== NULL) {
+                ?>
+                    <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
+                <?
+                } else {
+                ?>
+                    <p class="photo3">Проблема ещё не решена</p>
+                <?
+                }
+                ?>
+            </div>
+            <p>Статус заявки: <?= $item[6] ?></p>
+            <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
         </div>
-        ', $item[2], $item[3], $item[4], $item[7], $item[5], $item[6], $item[0]);
+
+    <?php
     }
     exit();
 } else {
     $troubles = get_troubles($connect);
 }
+
+if (isset($_POST["filter_id"])) {
+    $sortdiv = strip_tags($_POST["filter_id"]);
+    $troubles = get_troubles($connect, $sortdiv);
+    foreach ($troubles as $item) {
+
+    ?>
+
+        <div class="app_card">
+            <p>Заявка #<?= $item[0] ?></p>
+            <p>Проблема: <?= $item[2] ?></p>
+            <p>Описание проблемы: <?= $item[3] ?></p>
+            <p>Категория проблемы: <?= $item[4] ?></p>
+            <p>Дата отправки заявки: <?= $item[7] ?></p>
+            <div class="img_wrapper">
+                <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
+                <? if ($item[8] !== NULL) {
+                ?>
+                    <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
+                <?
+                } else {
+                ?>
+                    <p class="photo3">Проблема ещё не решена</p>
+                <?
+                }
+                ?>
+            </div>
+            <p>Статус заявки: <?= $item[6] ?></p>
+            <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+        </div>
+
+<?php
+    }
+    exit();
+} else {
+    $troubles = get_troubles($connect);
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,75 +92,120 @@ if(isset($_POST["sort_id"])) {
 
 <body>
 
-    <header>
+    <div class="wrapper">
 
-        <div class="header_container">
+        <header>
 
-            <div class="logo">
-                <p>City-Portal</p>
+            <div class="header_container">
+
+                <div class="logo">
+                    <p>City-Portal</p>
+                </div>
+
+                <div class="menu">
+                    <a href="../index.php">Главная</a>
+                    <a href="">FAQ</a>
+                </div>
+
             </div>
 
-            <div class="menu">
-                <a href="../index.php">Главная</a>
-                <a href="">FAQ</a>
+        </header>
+
+        <hr>
+
+        <main>
+
+            <div class="apps">
+
+                <a href="./cabinet.php">Редактор заявок</a>
+                <a href="./my_apps.php">Мои заявки</a>
+                <a class="logout" href="./logout.php">Выйти</a>
+
             </div>
 
-        </div>
+            <div class="main_container">
 
-    </header>
+                <div class="search_and_sort">
 
-    <hr>
-
-    <main>
-
-    <div class="apps">
-
-        <a href="./cabinet.php">Редактор заявок</a>
-        <a href="./my_apps.php">Мои заявки</a>
-        <a class="logout" href="./logout.php">Выйти</a>
-
-    </div>
-
-        <div class="main_container">
-
-            <div class="sort">
-                <p>Сортировать:</p>
-                <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
-            </div>
-
-            <div class="application">
-
-                <?php
-                foreach($troubles as $item) {
-                    $item[5] = "../" . $item[5];
-                    $item[8] = "../" . $item[8];
-                ?>
-                
-                    <div class="app_card">
-                        <p>Проблема: <?=$item[2]?></p>
-                        <p>Описание проблемы: <?=$item[3]?></p>
-                        <p>Категория проблемы: <?=$item[4]?></p>
-                        <p>Дата отправки заявки: <?=$item[7]?></p>
-                        <img class="photo1" src="<?=$item[5]?>" alt="">
-                        <p>Статус заявки: <?=$item[6]?></p>
-                        <a href="./solved.php?id=<?=$item[0]?>">Фото решённой проблемы</a>
+                    <div class="search">
+                        <input type="search" name="" id="" placeholder="Поиск">
                     </div>
 
-                <?php
-                }
-                ?>
+                    <div class="sort_and_filter">
+
+                        <div class="sort">
+                            <button>Сортировать</button>
+                            <p>По дате</p>
+                            <div>(<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</div>
+                        </div>
+
+                        <div class="filter">
+                            <button>Фильтровать</button>
+                            <p>По статусу</p>
+                            <div class="filter_block">
+                                <a id="new">Новые заявки</a>
+                                <a id="solved">Решённые заявки</a>
+                                <a id="rejected">Отклонённые заявки</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="application">
+
+                    <?php
+                    if ($troubles) {
+
+
+                        foreach ($troubles as $item) {
+                    ?>
+
+                            <div class="app_card">
+                                <p>Заявка #<?= $item[0] ?></p>
+                                <p>Проблема: <?= $item[2] ?></p>
+                                <p>Описание проблемы: <?= $item[3] ?></p>
+                                <p>Категория проблемы: <?= $item[4] ?></p>
+                                <p>Дата отправки заявки: <?= $item[7] ?></p>
+                                <div class="img_wrapper">
+                                    <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
+                                    <? if ($item[8] !== NULL) {
+                                    ?>
+                                        <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
+                                    <?
+                                    } else {
+                                    ?>
+                                        <p class="photo3">Проблема ещё не решена</p>
+                                    <?
+                                    }
+                                    ?>
+                                </div>
+                                <p>Статус заявки: <?= $item[6] ?></p>
+                                <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+                            </div>
+
+                    <?php
+
+                        }
+                    }
+                    ?>
+
+                </div>
 
             </div>
 
-        </div>
+        </main>
 
-    </main>
+        <footer>
 
-    <footer>
+        </footer>
 
-    </footer>
+    </div>
 
     <script src="../js/script.js"></script>
 
 </body>
+
 </html>

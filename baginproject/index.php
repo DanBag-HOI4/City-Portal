@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once "./vendor/connect.php";
 
 $troubles = get_troubles($connect);
@@ -13,6 +14,7 @@ $counter = mysqli_num_rows($counter)
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,9 +22,10 @@ $counter = mysqli_num_rows($counter)
     <link rel="stylesheet" href="../baginproject/css/styles.css">
     <title>Городской портал</title>
 </head>
+
 <body>
 
-    <div class="container">
+    <div class="wrapper">
 
         <header>
 
@@ -30,6 +33,10 @@ $counter = mysqli_num_rows($counter)
 
                 <div class="logo">
                     <p>City-Portal</p>
+                </div>
+
+                <div class="menu2">
+                    <span></span>
                 </div>
 
                 <div class="menu">
@@ -41,11 +48,12 @@ $counter = mysqli_num_rows($counter)
 
                     <?php
 
-                    if(!isset($_SESSION["user"])) {
+                    if (!isset($_SESSION["user"])) {
                         echo '<a href="../baginproject/vendor/signin.php">Войти</a>';
                         echo '<a href="../baginproject/vendor/signup.php">Зарегистрироваться</a>';
-                    } if(isset($_SESSION["user"])) {
-                        if($_SESSION["user"]["role"] == "0") {
+                    }
+                    if (isset($_SESSION["user"])) {
+                        if ($_SESSION["user"]["role"] == "0") {
                             echo '<a href="../baginproject/vendor/cabinet.php">Личный кабинет</a>';
                         } else {
                             echo '<a href="../baginproject/vendor/admin.php">Личный кабинет</a>';
@@ -63,24 +71,26 @@ $counter = mysqli_num_rows($counter)
         <main>
 
             <div class="main_container">
-                
+
                 <h1 class="main_title">Последние решённые проблемы:</h1>
-                <p class="counter">Счётчик решённых проблемы: <?=$counter?></p>
+                <p class="counter">Счётчик решённых проблем: <?= $counter ?></p>
 
                 <div class="application">
 
                     <?php
-                    foreach($last_four as $item) {
+                    foreach ($last_four as $item) {
                     ?>
 
                         <div class="app_card">
-                            <p>Проблема: <?=$item[2]?></p>
-                            <p>Описание проблемы: <?=$item[3]?></p>
-                            <p>Категория проблемы: <?=$item[4]?></p>
-                            <p>Дата отправки заявки: <?=$item[7]?></p>
-                            <img class="photo1" src="<?=$item[5]?>" alt="">
-                            <p>Статус заявки: <?=$item[6]?></p>
-                            <a href="./vendor/solved.php?id=<?=$item[0]?>">Фото решённой проблемы</a>
+                            <p>Проблема: <?= $item[2] ?></p>
+                            <p>Описание проблемы: <?= $item[3] ?></p>
+                            <p>Категория проблемы: <?= $item[4] ?></p>
+                            <p>Дата отправки заявки: <?= $item[7] ?></p>
+                            <p>Дата решения проблемы: <?= $item[9] ?></p>
+                            <div class="img_wrapper">
+                                <img class="photo1" src="<?= "./" . $item[5] ?>" alt="">
+                                <img class="photo2" src="<?= "./" . $item[8] ?>" alt="">
+                            </div>
                         </div>
 
                     <?php
@@ -88,7 +98,7 @@ $counter = mysqli_num_rows($counter)
                     ?>
 
                 </div>
-                
+
             </div>
 
         </main>
@@ -96,6 +106,7 @@ $counter = mysqli_num_rows($counter)
         <footer></footer>
 
     </div>
-        
+
 </body>
+
 </html>
