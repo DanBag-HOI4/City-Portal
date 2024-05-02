@@ -35,10 +35,8 @@ $app = mysqli_fetch_assoc($app);
             <option class="solved" value="решена">решена</option> 
             <option value="отклонена">отклонена</option> 
         </select>
-        <?php
-        ?>
-        <label for="app_photo2">Фотография решённой проблемы</label>
-        <input class="photo2" type="file" name="app_photo2" id="app_photo2">
+        <label for="add_photo2">Фотография решённой проблемы</label>
+        <input class="add_photo2" type="file" name="app_photo2" id="app_photo2">
         <button type="submit">Отправить данные</button>
     </form>
 

@@ -6,7 +6,7 @@ require_once "./connect.php";
 $id = $_POST["id"];
 
 $app_status = $_POST["status"];
-if(isset($_FILES["app_photo2"])) {
+if($_FILES["app_photo2"]) {
     $app_photo2 = "img/uploads/" . time() . $_FILES["app_photo2"]["name"];
     move_uploaded_file($_FILES["app_photo2"]["tmp_name"], "../" . $app_photo2);
     $t = time();
@@ -29,6 +29,11 @@ if(isset($_FILES["app_photo2"])) {
     <pre>
         <?
             echo $app_photo2;
+        ?>
+    </pre>
+    <pre>
+        <?
+            echo $_FILES["app_photo2"]["tmp_name"];
         ?>
     </pre>
 </body>
