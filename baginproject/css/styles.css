@@ -4,6 +4,13 @@
     font-family: montserrat, sans-serif;
 }
 
+.wrapper {
+    display: flex;
+    min-height: 100%;
+    overflow: hidden;
+    flex-direction: column;
+}
+
 header {
     color: white;
     background-color: teal;
@@ -11,11 +18,10 @@ header {
 
 .header_container {
     display: flex;
+    margin: 0 auto;
     align-items: center;
     justify-content: space-between;
-    margin-left: 200px;
-    margin-right: 200px;
-    height: 100px;
+    max-width: 1200px;
 }
 
 .menu {
@@ -59,14 +65,76 @@ a {
     font-weight: 800;
 }
 
+.menu2 {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .header_container {
+        justify-content: space-evenly;
+    }
+    .menu {
+        display: none;
+    } 
+    .right_menu {
+        display: none;
+    }   
+    .menu2 {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        max-width: 30px;
+        height: 20px;
+    }
+    .menu2 span{
+        position: absolute;
+        background-color: white;
+        width: 24px;
+        height: 2px;
+        top: 25px;
+    }
+    .menu2:before,
+    .menu2:after {
+        content: "";
+        background-color: white;
+        width: 24px;
+        height: 2px;
+    }
+    .menu:before {
+        top: 0px;
+    }
+    .menu:after {
+        bottom: 0px;
+    }
+
+}
+
 .main_container {
     display: flex;
-    margin-left: 400px;
-    margin-right: 400px;
-    gap: 15px;
     flex-direction: column;
-    justify-content: center;
+    margin: 0px auto;
+    max-width: 1200px;
+    padding: 0px 15px;
 }
+
+/* @media screen and (max-width: 1200px) {
+    .main_container {
+        max-width: 970px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .main_container {
+        max-width: 750px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .main_container {
+        max-width: none;
+    }
+} */
+
 
 .main_title {
     margin-top: 100px;
@@ -74,25 +142,113 @@ a {
 
 .application {
     display: flex;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    align-items: center;
 }
 
 .app_card {
     margin-top: 100px;
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    max-width: fit-content;
     gap: 30px;
     padding: 30px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
     border-radius: 30px;
 }
 
-.app_card img {
-    width: 400px;
-    height: 300px;
+.img_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.photo1 {
+    position: relative;
+    width: 1000px;
+    height: 700px;
     border-radius: 30px;
+    transition: .3s;
+}
+
+.photo2 {
+    position: absolute;
+    width: 1000px;
+    height: 700px;
+    border-radius: 30px;
+    opacity: 0;
+    transition: .3s;
+}
+
+@media screen and (max-width: 1200px) {
+    .photo1 {
+        width: 970px;
+        height: 600px;
+    }
+
+    .photo2 {
+        width: 970px;
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .photo1 {
+        width: 750px;
+        height: 400px;
+    }
+
+    .photo2 {
+        width: 750px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .photo1 {
+        width: 540px;
+        height: 400px;
+    }
+
+    .photo2 {
+        width: 540px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .photo1 {
+        width: 540px;
+        height: 400px;
+    }
+
+    .photo2 {
+        width: 540px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .photo1 {
+        width: 340px;
+        height: 340px;
+    }
+
+    .photo2 {
+        width: 340px;
+        height: 340px;
+    }
+}
+
+
+.img_wrapper:hover {
+    .photo1 {
+        opacity: 0;
+    }
+    .photo2 {
+        opacity: 1;
+    }
 }
 
 .app_card * {

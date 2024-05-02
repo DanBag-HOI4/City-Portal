@@ -4,6 +4,12 @@
     font-family: montserrat, sans-serif;
 }
 
+.wrapper {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+}
+
 header {
     color: white;
     background-color: teal;
@@ -11,11 +17,10 @@ header {
 
 .header_container {
     display: flex;
+    margin: 0 auto;
     align-items: center;
     justify-content: space-between;
-    margin-left: 200px;
-    margin-right: 200px;
-    height: 100px;
+    max-width: 1200px;
 }
 
 .menu {
@@ -59,14 +64,6 @@ a {
     font-weight: 800;
 }
 
-.main_container {
-    display: flex;
-    margin-left: 200px;
-    margin-right: 200px;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .apps {
     display: flex;
     justify-content: center;
@@ -94,26 +91,200 @@ a {
     cursor: pointer;
 }
 
+.main_container {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    max-width: 1200px;
+    padding: 0px 15px;
+}
+
+.search_and_sort {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.sort_block {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* visibility: hidden; */
+}
+
+.sort {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.sort p {
+    margin-top: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.sort a {
+    color: black;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.sort_and_filter {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.filter p {
+    margin-top: 15px;
+}
+
+.filter_block {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+    gap: 5px;
+}
+
 .application {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .app_card {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    max-width: fit-content;
+    max-height: fit-content;
+    align-items: center;
     gap: 30px;
     padding: 30px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
     border-radius: 30px;
 }
 
-.app_card img {
-    width: 400px;
-    height: 300px;
+.img_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.photo1 {
+    position: relative;
+    width: 1000px;
+    height: 700px;
     border-radius: 30px;
+    transition: .3s;
+}
+
+.photo2 {
+    position: absolute;
+    width: 1000px;
+    height: 700px;
+    border-radius: 30px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.photo3 {
+    position: absolute;
+    border-radius: 30px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.photo4 {
+    position: absolute;
+    border-radius: 30px;
+    opacity: 0;
+    transition: .3s;
+}
+
+@media screen and (max-width: 1200px) {
+    .photo1 {
+        width: 970px;
+        height: 600px;
+    }
+
+    .photo2 {
+        width: 970px;
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .photo1 {
+        width: 750px;
+        height: 400px;
+    }
+
+    .photo2 {
+        width: 750px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .photo1 {
+        width: 540px;
+        height: 400px;
+    }
+
+    .photo2 {
+        width: 540px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .photo1 {
+        width: 540px;
+        height: 400px;
+    }
+
+    .photo2 {
+        width: 540px;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .photo1 {
+        width: 340px;
+        height: 340px;
+    }
+
+    .photo2 {
+        width: 340px;
+        height: 340px;
+    }
+}
+
+.img_wrapper:hover {
+    .photo1 {
+        opacity: 0;
+    }
+    .photo2 {
+        opacity: 1;
+    }
+    .photo3 {
+        opacity: 1;
+    }
 }
 
 .app_card * {
@@ -152,12 +323,12 @@ input:focus {
 }
 
 button {
-    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: teal;
     border-radius: 30px;
+    padding: 15px;
     border: unset;
     color: white;
     height: 30px;
@@ -166,13 +337,4 @@ button {
 
 .logout {
     color: white;
-}
-
-.photo1 {
-    position: relative;
-}
-
-.photo2 {
-    position: absolute;
-    top: 550px;
 }

@@ -10,7 +10,7 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $password_confirm = $_POST["password_confirm"];
 $hidden_password = md5($password); 
-mysqli_query($connect, "INSERT INTO `users` (`id`, `first_name`, `last_name`, `otchestvo`, `login`, `email`, `password`, `role`) VALUES (NULL, '$first_name', '$last_name', '$otchestvo', '$login', '$email', '$hidden_password', NULL)");
+mysqli_query($connect, "INSERT INTO `users` (`id`, `first_name`, `last_name`, `otchestvo`, `login`, `email`, `password`, `role`) VALUES (NULL, '$first_name', '$last_name', '$otchestvo', '$login', '$email', '$hidden_password', 0)");
 
 header("Location: ../index.php")
 
