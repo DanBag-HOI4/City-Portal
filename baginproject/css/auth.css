@@ -34,6 +34,15 @@ input:focus {
     border-bottom: 2px solid teal;
 }
 
+.checkblock {
+    display: flex;
+    gap: 10px;
+}
+
+.checkblock input {
+    width: 25px;
+}
+
 button {
     margin-top: 15px;
     display: flex;

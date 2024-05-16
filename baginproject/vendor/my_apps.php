@@ -34,7 +34,15 @@ if (isset($_POST["sort_id"])) {
             ?>
             </div>
             <p>Статус заявки: <?= $item[6] ?></p>
-            <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+            <p>Причина отклонения заявки: <?= $item[10] ?></p>
+            <?
+                if ($item[6]!="решена" ) {
+            ?>
+                <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+                <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+            <?
+            }
+            ?>
         </div>
 
     <?php
@@ -155,7 +163,15 @@ if (isset($_POST["sort_id"])) {
                                 ?>
                                 </div>
                                 <p>Статус заявки: <?= $item[6] ?></p>
-                                <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+                                <p>Причина отклонения заявки: <?= $item[10] ?></p>
+                                <?
+                                 if ($item[6]!="решена" ) {
+                                ?>
+                                    <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+                                    <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+                                <?
+                                }
+                                ?>
                             </div>
 
                     <?php

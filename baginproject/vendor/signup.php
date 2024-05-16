@@ -26,6 +26,10 @@
         <input type="password" name="password" id="password" placeholder="********" required>
         <label for="password_confirm">Введите ваш пароль ещё раз</label>
         <input type="password" name="password_confirm" id="password_confirm" placeholder="********" required>
+        <div class="checkblock">
+            <input type="checkbox" name="check" id="check" required>
+            <p>Согласие на обработку персональных данных</p>
+        </div>
         <button type="submit">Отправить данные</button>
     </form>
 </body>

@@ -4,9 +4,12 @@ $(document).ready(function () {
         var value = $(this).val();
         if (value == "решена") {
             $(".add_photo2").css("visibility", "visible")
+            $(".label_photo").css("visibility", "visible")
         } else {
             $(".add_photo2").css("visibility", "hidden")
+            $(".label_photo").css("visibility", "hidden")
         }
+        return false;
     });
 
     $(".sort a").click(function () {

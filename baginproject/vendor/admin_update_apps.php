@@ -24,6 +24,7 @@ $app = mysqli_fetch_assoc($app);
         <pre>
             <?
             print_r($app);
+            
             ?>
         </pre>
 
@@ -31,12 +32,19 @@ $app = mysqli_fetch_assoc($app);
         <input type="hidden" name="id" value ="<?= $id ?>">
         <label for="status">Укажите статус заявки</label>
         <select name="status" id="status" required> 
+            <?
+            if($app[6]) {
+
+            }
+            ?>
             <option value="новая">новая</option> 
             <option class="solved" value="решена">решена</option> 
             <option value="отклонена">отклонена</option> 
         </select>
-        <label for="add_photo2">Фотография решённой проблемы</label>
+        <label class="label_photo" for="add_photo2">Фотография решённой проблемы</label>
         <input class="add_photo2" type="file" name="app_photo2" id="app_photo2">
+        <label for="app_reason">Причина отклонения заявки</label>
+        <textarea class="reason" name="app_reason" id="app_reason"></textarea>
         <button type="submit">Отправить данные</button>
     </form>
 
