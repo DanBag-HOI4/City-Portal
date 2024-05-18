@@ -1,4 +1,5 @@
 <?php
+header("Refresh: 5");
 session_start();
 
 require_once "./vendor/connect.php";
@@ -8,7 +9,15 @@ $troubles = get_troubles($connect);
 $last_four = mysqli_query($connect, "SELECT * FROM `troubles` WHERE `status` = 'решена' ORDER BY `date` DESC LIMIT 4");
 $last_four = mysqli_fetch_all($last_four);
 $counter = mysqli_query($connect, "SELECT * FROM `troubles` WHERE `status` = 'решена'");
-$counter = mysqli_num_rows($counter)
+$counter = mysqli_num_rows($counter);
+
+
+if(!$counter) {
+    ?>
+    <audio autoplay src="./music/uvedomlen-korotkoe.mp3">
+    </audio>
+    <?
+};
 
 ?>
 
@@ -24,6 +33,9 @@ $counter = mysqli_num_rows($counter)
 </head>
 
 <body>
+
+    <!-- <audio autoplay src="./music/uvedomlen-korotkoe.mp3">
+    </audio> -->
 
     <div class="wrapper">
 
@@ -41,7 +53,7 @@ $counter = mysqli_num_rows($counter)
 
                 <div class="menu">
                     <a href="">Главная</a>
-                    <a href="">FAQ</a>
+
                 </div>
 
                 <div class="right_menu">

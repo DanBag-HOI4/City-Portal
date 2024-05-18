@@ -34,12 +34,73 @@ if (isset($_POST["sort_id"])) {
             ?>
             </div>
             <p>Статус заявки: <?= $item[6] ?></p>
+            <?
+            if($item[6]=="отклонена") {
+            ?>
             <p>Причина отклонения заявки: <?= $item[10] ?></p>
             <?
-                if ($item[6]!="решена" ) {
+            }
             ?>
-                <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
-                <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+            <?
+            if ($item[6]!="решена" ) {
+            ?>
+            <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+            <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+            <?
+            }
+            ?>
+        </div>
+
+    <?php
+    }
+    exit();
+} else {
+    $troubles = get_troubles($connect);
+}
+
+if (isset($_POST["filter_id"])) {
+    $id = strip_tags($_POST["filter_id"]);
+    $troubles = get_troubles($connect, $filter_id);
+    foreach ($troubles as $item) {
+
+?>
+
+        <div class="app_card">
+            <p>Заявка #<?= $item[0] ?></p>
+            <p>Проблема: <?= $item[2] ?></p>
+            <p>Описание проблемы: <?= $item[3] ?></p>
+            <p>Категория проблемы: <?= $item[4] ?></p>
+            <p>Дата отправки заявки: <?= $item[7] ?></p>
+            <div class="img_wrapper">
+            <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
+            <? if ($item[6]=="решена" ) {
+            ?>
+                <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
+            <?
+            } elseif ($item[6]=="новая") {
+            ?>
+                <p class="photo3">Проблема ещё не решена</p>
+            <?
+            } else {
+            ?>
+            <p class="photo4">Заявка отклонена</p>
+            <?  
+            }
+            ?>
+            </div>
+            <p>Статус заявки: <?= $item[6] ?></p>
+            <?
+            if($item[6]=="отклонена") {
+            ?>
+            <p>Причина отклонения заявки: <?= $item[10] ?></p>
+            <?
+            }
+            ?>
+            <?
+            if ($item[6]!="решена" ) {
+            ?>
+            <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+            <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
             <?
             }
             ?>
@@ -79,7 +140,6 @@ if (isset($_POST["sort_id"])) {
 
                 <div class="menu">
                     <a href="../index.php">Главная</a>
-                    <a href="">FAQ</a>
                 </div>
 
             </div>
@@ -163,12 +223,18 @@ if (isset($_POST["sort_id"])) {
                                 ?>
                                 </div>
                                 <p>Статус заявки: <?= $item[6] ?></p>
+                                <?
+                                if($item[6]=="отклонена") {
+                                ?>
                                 <p>Причина отклонения заявки: <?= $item[10] ?></p>
                                 <?
-                                 if ($item[6]!="решена" ) {
+                                }
                                 ?>
-                                    <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
-                                    <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+                                <?
+                                if ($item[6]!="решена" ) {
+                                ?>
+                                <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
+                                <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
                                 <?
                                 }
                                 ?>

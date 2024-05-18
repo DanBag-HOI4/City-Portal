@@ -38,20 +38,33 @@ $(document).ready(function () {
         return false;
     });
 
-    $(".filter_block a").click(async function () {
-        try {
-            var filter = "new";
-            let response = await fetch('connect.php', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(filter)
-              });
-              console.log(response)
-        } catch (error) {
-            console.log(error)
-        }
-    })
+    // $(".filter_block a").click(async function () {
+    //     try {
+    //         var filter = "new";
+    //         let response = await fetch('connect.php', {
+    //             method: 'POST',
+    //             headers: {
+    //               'Content-Type': 'application/json;charset=utf-8'
+    //             },
+    //             body: JSON.stringify(filter)
+    //           });
+    //           console.log(response)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // })
+
+    $(".filter_block a").click(function() {
+        let id = $(this).attr("id");
+        $.ajax({
+            type: "POST",
+            url: "my_apps.php",
+            data: "filter_id=" + id,
+            success: function(html) {
+                $(".application").html(html);
+            },
+          });
+          return false;
+    });
 
 });

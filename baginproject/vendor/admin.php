@@ -22,7 +22,6 @@ session_start();
 
             <div class="menu">
                 <a href="../index.php">Главная</a>
-                <a href="">FAQ</a>
             </div>
 
         </div>
