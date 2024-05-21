@@ -20,6 +20,5 @@ $t2 = date("Y-m-d-H:i:s", $t);
 
 var_dump($_FILES);
 
-
 mysqli_query($connect, "INSERT INTO `troubles` (`id`, `user_id`, `name`, `description`, `category`, `photo`, `status`, `date`) VALUES (NULL, '$user_id', '$app_name', '$app_desc', '$app_cat', '$app_photo', '$app_status', '$t2')")
 ?>

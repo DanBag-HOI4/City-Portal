@@ -53,18 +53,18 @@ session_start();
 
                     <form action="./application_create.php" method="post" enctype="multipart/form-data">
                         <label for="app_name">Название проблемы</label>
-                        <input type="app_name" name="app_name" id="app_name" placeholder="" required>
+                        <input type="text" name="app_name" id="app_name" placeholder="" required>
                         <label for="app_desc">Описание проблемы</label>
                         <textarea type="textarea" name="app_desc" id="app_desc" placeholder="" rows="5" cols="33" maxlength="300" required></textarea>
                         <label for="app_cat">Выберите категорию проблемы</label>
                         <select name="app_cat" id="app_cat" required>
-                            <?
-                            foreach($categories as $item){
-                                ?>
-                                <option value="<?=$item[1]?>"><?=$item[1]?></option>
-                                <?
-                            }
+                        <?
+                        foreach($categories as $item){
                             ?>
+                            <option value="<?=$item[1]?>"><?=$item[1]?></option>
+                            <?
+                        }
+                        ?>
                         </select>
                         <label for="app_photo">Фотография проблемы</label>
                         <input type="file" name="app_photo" id="app_photo" required>

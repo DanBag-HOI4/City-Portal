@@ -1,5 +1,5 @@
 <?php
-header("Refresh: 5");
+// header("Refresh: 5");
 session_start();
 
 require_once "./vendor/connect.php";
@@ -12,7 +12,7 @@ $counter = mysqli_query($connect, "SELECT * FROM `troubles` WHERE `status` = 'р
 $counter = mysqli_num_rows($counter);
 
 
-if(!$counter) {
+if(isset($_POST["value_status"])) {
     ?>
     <audio autoplay src="./music/uvedomlen-korotkoe.mp3">
     </audio>
@@ -40,6 +40,8 @@ if(!$counter) {
     <div class="wrapper">
 
         <header>
+
+            <p class="value_status_check"><?echo $_POST["value_status"]?></p>
 
             <div class="header_container">
 

@@ -48,3 +48,15 @@ button {
 .add_photo2 {
     visibility: hidden;
 }
+
+.label_photo {
+    visibility: hidden;
+}
+
+.app_reason_label {
+    visibility: hidden;
+}
+
+.reason {
+    visibility: hidden;
+}

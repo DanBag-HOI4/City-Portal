@@ -43,9 +43,9 @@ $app = mysqli_fetch_assoc($app);
         </select>
         <label class="label_photo" for="add_photo2">Фотография решённой проблемы</label>
         <input class="add_photo2" type="file" name="app_photo2" id="app_photo2">
-        <label for="app_reason">Причина отклонения заявки</label>
+        <label class="app_reason_label" for="app_reason">Причина отклонения заявки</label>
         <textarea class="reason" name="app_reason" id="app_reason"></textarea>
-        <button type="submit">Отправить данные</button>
+        <button class="status_update" type="submit">Отправить данные</button>
     </form>
 
 </div>

@@ -9,8 +9,30 @@ $(document).ready(function () {
             $(".add_photo2").css("visibility", "hidden")
             $(".label_photo").css("visibility", "hidden")
         }
+
+        if (value == "отклонена") {
+            $(".reason").css("visibility", "visible")
+            $(".app_reason_label").css("visibility", "visible")
+        } else {
+            $(".reason").css("visibility", "hidden")
+            $(".app_reason_label").css("visibility", "hidden")
+        }
         return false;
     });
+
+    // $(".status_update").click(function() {
+    //     var value = $(this).val();
+    //     $.ajax({
+    //         url: "index.php",
+    //         data: "value_status=" + value,
+    //         type: "post",
+    //         success: function (html) {
+    //             $("value_status_check").html(html);
+    //         },
+    //         timeout: 5000
+    //     });
+    //     return false;
+    // })
 
     $(".sort a").click(function () {
         var id = $(this).attr("id");

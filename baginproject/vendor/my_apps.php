@@ -42,7 +42,7 @@ if (isset($_POST["sort_id"])) {
             }
             ?>
             <?
-            if ($item[6]!="решена" ) {
+            if ($item[6]=="новая" ) {
             ?>
             <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
             <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
@@ -231,7 +231,7 @@ if (isset($_POST["filter_id"])) {
                                 }
                                 ?>
                                 <?
-                                if ($item[6]!="решена" ) {
+                                if ($item[6]=="новая" ) {
                                 ?>
                                 <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
                                 <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>

@@ -37,7 +37,7 @@ if (isset($_POST["sort_id"])) {
             <p>Статус заявки: <?= $item[6] ?></p>
             <p>Причина отклонения заявки: <?= $item[10] ?></p>
                 <?
-                    if ($item[6]!="решена" ) {
+                    if ($item[6]=="новая" ) {
                 ?>
                 <a href="./admin_update_apps.php?id=<?= $item[0] ?>">Изменить статус заявки</a>
                 <?
@@ -158,7 +158,7 @@ if (isset($_POST["sort_id"])) {
                                 }
                                 ?>
                                 <?
-                                 if ($item[6]!="решена" ) {
+                                 if ($item[6]=="новая") {
                                 ?>
                                 <a href="./admin_update_apps.php?id=<?= $item[0] ?>">Изменить статус заявки</a>
                                 <?
