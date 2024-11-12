@@ -29,9 +29,6 @@ if($_FILES["app_photo"]["tmp_name"][0]) {
 </head>
 <body>
     <pre>
-        <?
-            echo fgfdgdfgdf
-        ?>
     </pre>
 </body>
 </html>

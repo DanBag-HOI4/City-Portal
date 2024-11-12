@@ -41,7 +41,7 @@ if(isset($_POST["value_status"])) {
 
         <header>
 
-            <p class="value_status_check"><?echo $_POST["value_status"]?></p>
+            <p class="value_status_check"><?if(isset($_POST["value_status"])) {echo $_POST["value_status"];} ?></p>
 
             <div class="header_container">
 

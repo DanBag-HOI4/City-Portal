@@ -23,7 +23,7 @@ $app = mysqli_fetch_assoc($app);
 
         <pre>
             <?
-            print_r($app);
+            // print_r($app);
             
             ?>
         </pre>
