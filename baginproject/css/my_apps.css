@@ -68,7 +68,19 @@ a {
     display: flex;
     justify-content: center;
     background-color: teal;
+}
+
+.apps a {
     color: white;
+    font-size: 24px;
+}
+
+.apps a {
+    color: white;
+}
+
+.apps p {
+    cursor: pointer;
 }
 
 .apps * {
@@ -81,14 +93,6 @@ a {
 
 .apps *:hover {
     background-color: rgb(13, 170, 170);
-}
-
-.apps a {
-    color: white;
-}
-
-.apps p {
-    cursor: pointer;
 }
 
 .main_container {
@@ -139,11 +143,36 @@ a {
     gap: 5px;
 }
 
-.sort_and_filter {
-    margin-top: 50px;
+.filter_block {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    cursor: pointer;
+    align-items: center;
+
+}
+
+.filter_block a {
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.filter_block a:hover {
+    background-color: rgb(87, 187, 187);
+    transition: .3s;
+}
+
+.problem_block {
+    display: flex;
+    gap: 15px;
+}
+
+
+.sort_and_filter {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 20px;
 }
 
 .filter p {
@@ -289,7 +318,6 @@ a {
 
 .app_card * {
     display: flex;
-    flex-direction: column;
 }
 
 form {
@@ -323,16 +351,22 @@ input:focus {
 }
 
 button {
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: teal;
-    border-radius: 30px;
-    padding: 15px;
+    border-radius: 10px;
     border: unset;
     color: white;
-    height: 30px;
+    height: 10px;
     cursor: pointer;
+    padding: 20px;
+}
+
+button:hover {
+    background-color: rgb(87, 187, 187);
+    transition: .3s;
 }
 
 .logout {

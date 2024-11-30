@@ -76,11 +76,11 @@ a {
     display: flex;
     justify-content: center;
     background-color: teal;
-    color: white;
 }
 
 .apps a {
     color: white;
+    font-size: 24px;
 }
 
 .apps * {
@@ -99,10 +99,49 @@ a {
     cursor: pointer;
 }
 
+.main_container {
+    display: flex;
+    margin-left: 200px;
+    margin-right: 200px;
+    flex-direction: column;
+    align-items: center;
+}
+
 .application {
     display: flex;
     justify-content: center;
     width: 100%;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.catlist {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.catlist2 {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.catlist3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap: 50px;
+}
+
+.cat_btns {
+    display: flex;
+    gap: 10px;
 }
 
 form {
@@ -115,6 +154,14 @@ form {
     gap: 15px;
     font-size: 16px;
     width: 300px;
+}
+
+form p {
+    font-size: 24px;
+}
+
+.ggg {
+    background-color: rgb(206, 87, 103);
 }
 
 input {
@@ -136,18 +183,18 @@ input:focus {
 }
 
 button {
-    margin-top: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: teal;
-    border-radius: 30px;
+    border-radius: 10px;
     border: unset;
     color: white;
     height: 30px;
     cursor: pointer;
+    padding: 10px;
 }
 
 .logout {
-    color: white;
+    color: red;
 }

@@ -89,4 +89,17 @@ $(document).ready(function () {
           return false;
     });
 
+    $(".filter_block2 a").click(function() {
+        let id = $(this).attr("id");
+        $.ajax({
+            type: "POST",
+            url: "admin_apps.php",
+            data: "filter_id=" + id,
+            success: function(html) {
+                $(".application").html(html);
+            },
+          });
+          return false;
+    });
+
 });

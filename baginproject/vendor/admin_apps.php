@@ -10,46 +10,105 @@ if (isset($_POST["sort_id"])) {
 
 ?>
 
-        <div class="app_card">
-            <p>Заявка #<?= $item[0] ?></p>
-            <p>Заявка пользователя #<?= $item[1] ?></p>
-            <p>Проблема: <?= $item[2] ?></p>
-            <p>Описание проблемы: <?= $item[3] ?></p>
-            <p>Категория проблемы: <?= $item[4] ?></p>
-            <p>Дата отправки заявки: <?= $item[7] ?></p>
-            <div class="img_wrapper">
-                <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
-                <? if ($item[6]=="решена" ) {
-                ?>
-                    <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
-                <?
-                } elseif ($item[6]=="новая") {
-                ?>
-                    <p class="photo3">Проблема ещё не решена</p>
-                <?
-                } else {
-                ?>
-                <p class="photo4">Заявка отклонена</p>
-                <?  
-                }
-                ?>
-            </div>
-            <p>Статус заявки: <?= $item[6] ?></p>
-            <? if ($item[6]=="отклонена") {
-                ?>
-                <p>Причина отклонения заявки: <?=$item[10];?></p>
-                <?
-            }
-                if ($item[6]=="новая" ) {
-                ?>
-                <a href="./admin_update_apps.php?id=<?= $item[0] ?>">Изменить статус заявки</a>
-                <?
-                }
-                ?>
-        </div>
+<div class="app_card">
+    <div class="problem_block">
+        <p>Заявка #<?= $item[0] ?></p>
+        <p>Заявка пользователя #<?= $item[1] ?></p>
+        <p>Проблема: <?= $item[2] ?></p>
+        <p>Категория проблемы: <?= $item[4] ?></p>
+    </div>
+    <p>Описание проблемы: <?= $item[3] ?></p>
+    <p>Дата отправки заявки: <?= $item[7] ?></p>
+    <div class="img_wrapper">
+        <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
+        <? if ($item[6]=="решена" ) {
+        ?>
+            <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
+        <?
+        } elseif ($item[6]=="новая") {
+        ?>
+            <p class="photo3">Проблема ещё не решена</p>
+        <?
+        } else {
+        ?>
+        <p class="photo4">Заявка отклонена</p>
+        <?  
+        }
+        ?>
+    </div>
+    <p>Статус заявки: <?= $item[6] ?></p>
+        <?
+        if($item[6]=="отклонена") {
+        ?>
+        <p>Причина отклонения заявки: <?= $item[10] ?></p>
+        <?
+        }
+        ?>
+        <?
+            if ($item[6]=="новая") {
+        ?>
+        <a href="./admin_update_apps.php?id=<?= $item[0] ?>">Изменить статус заявки</a>
+        <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+        <?
+        }
+        ?>
+    </div>
 
-<?php
+    <?php
+    }
+    exit();
+} else if (isset($_POST["filter_id"])) {
+    $id = strip_tags($_POST["filter_id"]);
+    $troubles = get_troubles($connect, $id);
+    foreach ($troubles as $item) {
 
+?>
+
+    <div class="app_card">
+    <div class="problem_block">
+        <p>Заявка #<?= $item[0] ?></p>
+        <p>Заявка пользователя #<?= $item[1] ?></p>
+        <p>Проблема: <?= $item[2] ?></p>
+        <p>Категория проблемы: <?= $item[4] ?></p>
+    </div>
+    <p>Описание проблемы: <?= $item[3] ?></p>
+    <p>Дата отправки заявки: <?= $item[7] ?></p>
+    <div class="img_wrapper">
+        <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
+        <? if ($item[6]=="решена" ) {
+        ?>
+            <img class="photo2" src="<?= "../" . $item[8] ?>" alt="">
+        <?
+        } elseif ($item[6]=="новая") {
+        ?>
+            <p class="photo3">Проблема ещё не решена</p>
+        <?
+        } else {
+        ?>
+        <p class="photo4">Заявка отклонена</p>
+        <?  
+        }
+        ?>
+    </div>
+    <p>Статус заявки: <?= $item[6] ?></p>
+        <?
+        if($item[6]=="отклонена") {
+        ?>
+        <p>Причина отклонения заявки: <?= $item[10] ?></p>
+        <?
+        }
+        ?>
+        <?
+            if ($item[6]=="новая") {
+        ?>
+        <a href="./admin_update_apps.php?id=<?= $item[0] ?>">Изменить статус заявки</a>
+        <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
+        <?
+        }
+        ?>
+    </div>
+
+    <?php
     }
     exit();
 } else {
@@ -93,30 +152,41 @@ if (isset($_POST["sort_id"])) {
 
         <main>
 
-            <div class="apps">
+        <div class="apps">
+            <a href="./admin_apps.php">Заявки</a>
+            <a href="./admin.php">Категории</a>
+            <a class="logout" href="./logout.php">Выйти</a>
+        </div>
 
-                <a href="./admin_apps.php">Заявки</a>
-                <a class="logout" href="./logout.php">Выйти</a>
-
-            </div>
 
             <div class="main_container">
 
-                <form class="category" action="./addcat.php" method="post">
-                    <p>Добавьте категорию</p>
-                    <input type="text" name="addcat" required>
-                    <button type="submit">Отправить</button>
-                </form>
-
                 <div class="search_and_sort">
 
-                    <div class="sort2">
-                        <p>Сортировать:</p>
-                        <p>По дате (<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</p>
-                    </div>
-
-                    <div class="search">
+                    <!-- <div class="search">
                         <input type="search" name="" id="" placeholder="Поиск">
+                    </div> -->
+
+                    <div class="sort_and_filter">
+
+                        <div class="sort">
+                            <button>Сортировать</button>
+                            <div class="sort_block">
+                                <p>По дате</p>
+                                <div>(<a id="date-new" href="">сначала новые</a> / <a id="date-old" href="">сначала старые</a>)</div>
+                            </div>
+                        </div>
+
+                        <div class="filter">
+                            <button>Фильтровать</button>
+                            <div class="filter_block">
+                                <a id="new">Новые заявки</a>
+                                <a id="solved">Решённые заявки</a>
+                                <a id="rejected">Отклонённые заявки</a>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -129,11 +199,13 @@ if (isset($_POST["sort_id"])) {
                     ?>
 
                         <div class="app_card">
-                            <p>Заявка #<?= $item[0] ?></p>
-                            <p>Заявка пользователя #<?= $item[1] ?></p>
-                            <p>Проблема: <?= $item[2] ?></p>
+                            <div class="problem_block">
+                                <p>Заявка #<?= $item[0] ?></p>
+                                <p>Заявка пользователя #<?= $item[1] ?></p>
+                                <p>Проблема: <?= $item[2] ?></p>
+                                <p>Категория проблемы: <?= $item[4] ?></p>
+                            </div>
                             <p>Описание проблемы: <?= $item[3] ?></p>
-                            <p>Категория проблемы: <?= $item[4] ?></p>
                             <p>Дата отправки заявки: <?= $item[7] ?></p>
                             <div class="img_wrapper">
                                 <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
@@ -164,6 +236,7 @@ if (isset($_POST["sort_id"])) {
                                  if ($item[6]=="новая") {
                                 ?>
                                 <a href="./admin_update_apps.php?id=<?= $item[0] ?>">Изменить статус заявки</a>
+                                <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
                                 <?
                                 }
                                 ?>
@@ -187,6 +260,17 @@ if (isset($_POST["sort_id"])) {
 
     </div>
 
+    <script>
+        $(document).ready(function() {
+                $(".sort button").click(function() {
+                    $(".sort_block").toggle();
+                });
+                $(".filter button").click(function() {
+                    $(".filter_block").toggle();
+                });
+        });
+
+    </script>
     <script src="../js/script.js"></script>
 
 </body>

@@ -4,61 +4,80 @@ if(!$connect) {
     die("error");
 }
 
-// $filter = $_POST["filter"];
 
-if(isset($user_id)) {
-    $sql2 = "SELECT * FROM `troubles` WHERE `user_id` = '$user_id'";
-}
+// if(isset($user_id)) {
+//     $sql2 = "SELECT * FROM `troubles` WHERE `user_id` = '$user_id'";
+// }
 
 $categories = mysqli_query($connect, "SELECT * FROM `category`");
 $categories = mysqli_fetch_all($categories);
 
-function get_troubles($connect, $id = FALSE, $sortdiv = FALSE, $filter_id = FALSE) {
+// $sortdiv = FALSE, $filter_id = FALSE
+function get_troubles($connect, $id = FALSE) {
     if(isset($_SESSION["user"])) {
         if($_SESSION["user"]["role"] == 0) {
             $user_id = $_SESSION["user"]["id"];
             $sql = "SELECT * FROM `troubles` WHERE `user_id` = '$user_id'";
+            if($id) {
+                if($id == "date-old") {
+                    $sql .=" ORDER BY `date` ASC";
+                }
+                else if($id == "date-new") {
+                    $sql .=" ORDER BY `date` DESC";
+                }
+                else if($id == "new") {
+                    $sql .=" and `status` = 'новая'"; 
+                }
+                else if($id == "solved") {
+                    $sql .=" and `status` = 'решена'"; 
+                }
+                else if($id == "rejected") {
+                    $sql .=" and `status` = 'отклонена'"; 
+                }
+            }
         }
         else {
             $sql = "SELECT * FROM `troubles`";
+            if($id) {
+                if($id == "date-old") {
+                    $sql .=" ORDER BY `date` ASC";
+                }
+                else if($id == "date-new") {
+                    $sql .=" ORDER BY `date` DESC";
+                }
+                else if($id == "new") {
+                    $sql .=" WHERE `status` = 'новая'"; 
+                }
+                else if($id == "solved") {
+                    $sql .=" WHERE `status` = 'решена'"; 
+                }
+                else if($id == "rejected") {
+                    $sql .=" WHERE `status` = 'отклонена'"; 
+                }
+            }
         }
     } else {
         $sql = "SELECT * FROM `troubles`";
     }
+    
 
-    // if($filter) {
-    //     if($filter == "new") {
-    //         $sql .=" and `status` = 'новая'";
+    // if($id) {
+    //     if($id == "date-old") {
+    //         $sql .=" ORDER BY `date` ASC";
     //     }
-    //     else if($filter == "solved") {
-    //         $sql .=" and `status` = 'решена'";
+    //     else if($id == "date-new") {
+    //         $sql .=" ORDER BY `date` DESC";
     //     }
-    //     else if($filter == "rejected") {
-    //         $sql .=" and `status` = 'отклонена'";
+    //     else if($id == "new") {
+    //         $sql .=" and `status` = 'новая'"; 
+    //     }
+    //     else if($id == "solved") {
+    //         $sql .=" and `status` = 'решена'"; 
+    //     }
+    //     else if($id == "rejected") {
+    //         $sql .=" and `status` = 'отклонена'"; 
     //     }
     // }
-    
-    if($id) {
-        if($id == "date-old") {
-            $sql .=" ORDER BY `date` ASC";
-        }
-        else if($id == "date-new") {
-            $sql .=" ORDER BY `date` DESC";
-        }
-    }
-
-    if($filter_id) {
-        if($filter_id == "new") {
-            $sql .=" and `status` = 'новая'";
-        }
-        else if($filter_id == "solved") {
-            $sql .=" and `status` = 'решена'";
-        } 
-        else {
-            $sql .=" and `status` = 'отклонена'";
-        }
-    }
-
 
     $result = mysqli_query($connect, $sql);
     for($i = 0; $i<mysqli_num_rows($result); $i++) {

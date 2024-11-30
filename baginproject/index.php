@@ -53,11 +53,6 @@ if(isset($_POST["value_status"])) {
                     <span></span>
                 </div>
 
-                <div class="menu">
-                    <a href="">Главная</a>
-
-                </div>
-
                 <div class="right_menu">
 
                     <?php

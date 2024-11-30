@@ -68,6 +68,7 @@ a {
     display: flex;
     justify-content: center;
     background-color: teal;
+    font-size: 24px;
     color: white;
 }
 
@@ -183,11 +184,6 @@ a {
     }
 }
 
-.app_card * {
-    display: flex;
-    flex-direction: column;
-}
-
 form {
     display: flex;
     margin-top: 100px;
@@ -210,6 +206,63 @@ input {
     cursor: pointer;
 }
 
+.sort_and_filter {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 20px;
+}
+
+.sort {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.sort p {
+    margin-top: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.sort a {
+    color: black;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.filter_block {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+
+}
+
+.filter_block a {
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.filter_block a:hover {
+    background-color: rgb(87, 187, 187);
+    transition: .3s;
+}
+
+.problem_block {
+    display: flex;
+    gap: 15px;
+}
+
 select {
     cursor: pointer;
 }
@@ -219,16 +272,17 @@ input:focus {
 }
 
 button {
-    margin-top: 15px;
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: teal;
-    border-radius: 30px;
+    border-radius: 10px;
     border: unset;
     color: white;
-    height: 30px;
+    height: 10px;
     cursor: pointer;
+    padding: 20px;
 }
 
 .logout {

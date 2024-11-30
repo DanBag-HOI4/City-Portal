@@ -23,12 +23,11 @@ session_start();
             <div class="header_container">
 
                 <div class="logo">
-                    <a href="../index.php">City-Portal</a>
+                    <p>City-Portal</p>
                 </div>
 
                 <div class="menu">
                     <a href="../index.php">Главная</a>
-                    <a href="">FAQ</a>
                 </div>
 
             </div>
@@ -41,7 +40,7 @@ session_start();
 
             <div class="apps">
 
-                <p>Редактор заявок</p>
+                <a href="./cabinet.php">Редактор заявок</a>
                 <a href="./my_apps.php">Мои заявки</a>
                 <a class="logout" href="./logout.php">Выйти</a>
 

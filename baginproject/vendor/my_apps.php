@@ -11,10 +11,12 @@ if (isset($_POST["sort_id"])) {
 ?>
 
         <div class="app_card">
-            <p>Заявка #<?= $item[0] ?></p>
-            <p>Проблема: <?= $item[2] ?></p>
+            <div class="problem_block">
+                <p>Заявка #<?= $item[0] ?></p>
+                <p>Проблема: <?= $item[2] ?></p>
+                <p>Категория проблемы: <?= $item[4] ?></p>
+            </div>
             <p>Описание проблемы: <?= $item[3] ?></p>
-            <p>Категория проблемы: <?= $item[4] ?></p>
             <p>Дата отправки заявки: <?= $item[7] ?></p>
             <div class="img_wrapper">
             <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
@@ -54,22 +56,20 @@ if (isset($_POST["sort_id"])) {
     <?php
     }
     exit();
-} else {
-    $troubles = get_troubles($connect);
-}
-
-if (isset($_POST["filter_id"])) {
+} else if (isset($_POST["filter_id"])) {
     $id = strip_tags($_POST["filter_id"]);
-    $troubles = get_troubles($connect, $filter_id);
+    $troubles = get_troubles($connect, $id);
     foreach ($troubles as $item) {
 
 ?>
 
         <div class="app_card">
-            <p>Заявка #<?= $item[0] ?></p>
-            <p>Проблема: <?= $item[2] ?></p>
+            <div class="problem_block">
+                <p>Заявка #<?= $item[0] ?></p>
+                <p>Проблема: <?= $item[2] ?></p>
+                <p>Категория проблемы: <?= $item[4] ?></p>
+            </div>
             <p>Описание проблемы: <?= $item[3] ?></p>
-            <p>Категория проблемы: <?= $item[4] ?></p>
             <p>Дата отправки заявки: <?= $item[7] ?></p>
             <div class="img_wrapper">
             <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
@@ -97,7 +97,7 @@ if (isset($_POST["filter_id"])) {
             }
             ?>
             <?
-            if ($item[6]!="решена" ) {
+            if ($item[6]=="новая" ) {
             ?>
             <a href="./update_apps.php?id=<?= $item[0] ?>">Редактировать заявку</a>
             <a href="./delete_apps.php?id=<?= $item[0] ?>">Удалить заявку</a>
@@ -162,9 +162,9 @@ if (isset($_POST["filter_id"])) {
 
                 <div class="search_and_sort">
 
-                    <div class="search">
+                    <!-- <div class="search">
                         <input type="search" name="" id="" placeholder="Поиск">
-                    </div>
+                    </div> -->
 
                     <div class="sort_and_filter">
 
@@ -200,10 +200,12 @@ if (isset($_POST["filter_id"])) {
                     ?>
 
                             <div class="app_card">
-                                <p>Заявка #<?= $item[0] ?></p>
-                                <p>Проблема: <?= $item[2] ?></p>
+                                <div class="problem_block">
+                                    <p>Заявка #<?= $item[0] ?></p>
+                                    <p>Проблема: <?= $item[2] ?></p>
+                                    <p>Категория проблемы: <?= $item[4] ?></p>
+                                </div>
                                 <p>Описание проблемы: <?= $item[3] ?></p>
-                                <p>Категория проблемы: <?= $item[4] ?></p>
                                 <p>Дата отправки заявки: <?= $item[7] ?></p>
                                 <div class="img_wrapper">
                                 <img class="photo1" src="<?= "../" . $item[5] ?>" alt="">
